@@ -9,32 +9,18 @@
   margin: 15px;
   padding: 15px;
   border-radius: 20px;
-  color: white;
+  color: black;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-}
-
-.Home::before {
-  content: "El \Geladon";
-  word-break: break-word;
-  white-space: pre-wrap;
-  max-width: 950px;
-  line-height: 90%;
-  font-family: "Exo";
-  font-size: 2in;
-  font-weight: 700;
-  color: #ffffff;
-  mix-blend-mode: soft-light;
-  opacity: 0.4;
-  position: absolute;
-  left: 8px;
-  top: 54%;
-  transform: translateY(-50%);
-  z-index: 1;
 }
 
 .Home__container {
   display: flex;
   align-items: center;
-  overflow: auto;
   justify-content: center;
+}
+
+@media (max-width: 350px) {
+  .Home__container {
+    justify-content: unset;
+  }
 }
