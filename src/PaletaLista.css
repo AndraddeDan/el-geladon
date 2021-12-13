@@ -53,8 +53,12 @@
   color: darkviolet;
 }
 
-.PaletaListaItem__selecionar {
-  background-color: darkviolet;
+.Acoes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Acoes__adicionar, .Acoes__remover {
   border: none;
   color: white;
   border-radius: 5px;
@@ -64,6 +68,19 @@
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
+  width: 48%;
+}
+
+.Acoes__remover {
+  background-color: red;
+}
+
+.Acoes__adicionar {
+  background-color: darkviolet;
+}
+
+.Acoes__adicionar--preencher {
+  width: 100%;
 }
 
 .PaletaListaItem__foto {
