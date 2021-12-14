@@ -97,3 +97,17 @@
     max-width: 320px;
   }
 }
+
+@media (max-width: 400px) {
+  .Header {
+    max-width: 250px;
+  }
+
+  .row {
+    column-gap: 20px;
+  }
+
+  .Logo__titulo {
+    font-size: 1.5em;
+  }
+}
