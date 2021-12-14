@@ -16,7 +16,7 @@ function Home() {
           <div className="Header__opcoes Opcoes">
             <div className="Opcoes__sacola Sacola">
               <img src={sacola} width="40px" className="Sacola__icone" alt="Sacola de compras" />
-              <span className="Sacola__badge"> 2 </span>
+              {/* <span className="Sacola__badge"> 2 </span> */}
             </div>
           </div>
         </div>
