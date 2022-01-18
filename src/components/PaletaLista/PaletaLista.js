@@ -18,7 +18,16 @@ function PaletaLista() {
 
 	return (
 		<div className="PaletaLista">
-			{paletas.map((paleta, index) => <PaletaListaItem /> )}
+			{paletas.map((paleta, index) =>
+				<PaletaListaItem
+					key={`PaletaListaItem-${index}`}
+					paleta={paleta}
+					quantidadeSelecionada={paletasSelecionadas[index]}
+					index={index}
+					onAdd={index => adicionarItem(index)}
+					onRemove={index => removerItem(index)} />
+				)
+			}
 		</div>
 	);
 }
