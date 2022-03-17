@@ -33,6 +33,7 @@ function AdicionaPaletaModal({ closeModal }) {
 							placeholder="10,00"
 							type="text"
 							value={state.preco}
+							required
 							onChange={(e) => handleChange(e, 'preco')} />
 					</div>
 					<div>
@@ -41,6 +42,7 @@ function AdicionaPaletaModal({ closeModal }) {
 							id="sabor"
 							placeholder="Chocolate"
 							type="text" value={state.sabor}
+							required
 							onChange={(e) => handleChange(e, 'sabor')} />
 					</div>
 					<div>
@@ -58,6 +60,7 @@ function AdicionaPaletaModal({ closeModal }) {
 							id="descricao"
 							placeholder="Detalhe o produto"
 							type="text" value={state.descricao}
+							required
 							onChange={(e) => handleChange(e, 'descricao')} />
 					</div>
 					<div>
@@ -70,6 +73,7 @@ function AdicionaPaletaModal({ closeModal }) {
 							type="file"
 							accept="image/png, image/gif, image/jpeg"
 							value={state.foto} 
+							required
 							onChange={(e) => handleChange(e, 'foto')} />
 					</div>
 
