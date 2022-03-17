@@ -1,8 +1,9 @@
 import "./AdicionaPaletaModal.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "components/Modal/Modal";
+import { PaletaService } from "services/PaletaService";
 
-function AdicionaPaletaModal({ closeModal }) {
+function AdicionaPaletaModal({ closeModal, onCreatePaleta }) {
 	const form = {
 		preco: '',
 		sabor: '',
@@ -12,19 +13,50 @@ function AdicionaPaletaModal({ closeModal }) {
 	}
 
 	const [state, setState] = useState(form);
+	const [canDisable, setCanDisable] = useState(true);
+
+	const canDisableSendButton = () => {
+		const response = !Boolean(
+			state.descricao.length
+			&& state.foto.length
+			&& state.sabor.length
+			&& state.preco.length
+		);
+
+		setCanDisable(response);
+	};
 
 	const handleChange = (e, name) => {
-		setState({
-			...state,
-			[name]: e.target.value
+		setState({ ...state, [name]: e.target.value });
+	}
 
-		})
-	} 
+	useEffect(() => {
+		canDisableSendButton();
+	})
+
+	const createPaleta = async () => {
+		const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split('\\').pop();
+
+		const { sabor, recheio, descricao, preco, foto } = state;
+
+		const titulo = sabor + (recheio && ' com ' + recheio);
+
+		const paleta = {
+			sabor: titulo,
+			descricao,
+			preco,
+			foto: `assets/images/${renomeiaCaminhoFoto(foto)}`
+		}
+
+		const response = await PaletaService.create(paleta);
+		onCreatePaleta(response);
+		closeModal();
+	}
 
   return (
     <Modal closeModal={closeModal}> 
 			<div className="AdicionaPaletaModal">
-				<form>
+				<form autocomplete="off">
 					<h2> Adicionar ao Cardápio </h2>
 					<div>
 						<label className="AdicionaPaletaModal__text" htmlFor="preco"> Preco: </label>
@@ -77,7 +109,13 @@ function AdicionaPaletaModal({ closeModal }) {
 							onChange={(e) => handleChange(e, 'foto')} />
 					</div>
 
-					<input className="AdicionaPaletaModal__enviar" type="submit" value="Enviar" />
+					<button
+						className="AdicionaPaletaModal__enviar"
+						type="button"
+						disabled={canDisable}
+						onClick={createPaleta} >
+						Enviar
+					</button>
 				</form>
 			</div>
     </Modal>
