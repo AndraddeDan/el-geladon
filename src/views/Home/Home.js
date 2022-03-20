@@ -1,6 +1,6 @@
 import "./Home.css";
 import PaletaLista from "components/PaletaLista/PaletaLista";
-import AdicionaPaletaModal from "components/AdicionaPaletaModal/AdicionaPaletaModal";
+import AdicionaEditaPaletaModal from "components/AdicionaEditaPaletaModal/AdicionaEditaPaletaModal";
 import Navbar from "components/Navbar/Navbar";
 import { useState } from "react";
 
@@ -15,7 +15,7 @@ function Home() {
         <PaletaLista paletaCriada={paletaParaAdicionar} />
         {
           canShowAdicionaPaletaModal &&
-          <AdicionaPaletaModal
+          <AdicionaEditaPaletaModal
             closeModal={() => setCanShowAdicionaPaletaModal(false)}
             onCreatePaleta={(paleta) => setPaletaParaAdicionar(paleta)}
             />
