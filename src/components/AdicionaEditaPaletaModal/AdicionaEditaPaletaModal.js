@@ -56,7 +56,7 @@ function AdicionaEditaPaletaModal({ closeModal, onCreatePaleta }) {
   return (
     <Modal closeModal={closeModal}> 
 			<div className="AdicionaPaletaModal">
-				<form autocomplete="off">
+				<form autoComplete="off">
 					<h2> Adicionar ao Cardápio </h2>
 					<div>
 						<label className="AdicionaPaletaModal__text" htmlFor="preco"> Preco: </label>
