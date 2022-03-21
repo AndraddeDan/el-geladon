@@ -41,10 +41,19 @@
 .Paleta {
   background: none;
   border: none;
+  transform: translateY(-3px);
+  border-radius: 10px;
+  transition: all .5s;
 }
 
 .Paleta__icone {
   cursor: pointer;
+  transform: translateY(3px);
+}
+
+.Paleta--ativa {
+  background: rgba(148, 0, 211);
+  border-radius: 10px;
 }
 
 .Sacola {
