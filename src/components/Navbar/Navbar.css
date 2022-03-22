@@ -44,6 +44,7 @@
   transform: translateY(-3px);
   border-radius: 10px;
   transition: all .5s;
+  padding: 0;
 }
 
 .Paleta__icone {
