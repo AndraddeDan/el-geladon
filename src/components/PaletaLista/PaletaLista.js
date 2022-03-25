@@ -1,10 +1,11 @@
 import "./PaletaLista.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PaletaListaItem from "components/PaletaListaItem/PaletaListaItem";
 import { PaletaService } from "services/PaletaService";
 import PaletaDetalhesModal from "components/PaletaDetalhesModal/PaletaDetalhesModal";
+import { ActionMode } from "constants/index";
 
-function PaletaLista({ paletaCriada, mode }) {
+function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta }) {
 	const [paletas, setPaletas] = useState([]);
 
 	const [paletasSelecionadas, setQuantidade] = useState({});
@@ -28,17 +29,24 @@ function PaletaLista({ paletaCriada, mode }) {
 
 	const getPaletaById = async (paletaId) => {
 		const response = await PaletaService.getById(paletaId);
-		setPaletaModal(response);
+
+		const mapper = {
+			[ActionMode.NORMAL]: () => setPaletaModal(response),
+			[ActionMode.ATUALIZAR]: () => updatePaleta(response),
+			[ActionMode.DELETAR]: () => deletePaleta(response)
+		}
+
+		mapper[mode]();
 	}
 
-	const adicionaPaletaNaLista = paleta => {
+	const adicionaPaletaNaLista = useCallback( paleta => {
 		const lista = [...paletas,  paleta]; 
 		setPaletas(lista);
-	}
+	}, [ paletas ]);
 
 	useEffect(() => {
 		if (paletaCriada) adicionaPaletaNaLista(paletaCriada);
-	}, [ paletaCriada ]);
+	}, [adicionaPaletaNaLista, paletaCriada]);
 
 	useEffect(() => {
 		getLista();
