@@ -12,6 +12,8 @@ function Home() {
     const [paletaParaDeletar, setPaletaParaDeletar] = useState();
     const [modoAtual, setModoAtual] = useState(ActionMode.NORMAL);
 
+    const [paletaEditada, setPaletaEditada] = useState();
+
     const handleActions = (action) => {
         const novaAcao = modoAtual === action ? ActionMode.NORMAL : action;
         setModoAtual(novaAcao);
@@ -22,6 +24,7 @@ function Home() {
         setPaletaParaAdicionar();
         setPaletaParaDeletar();
         setPaletaParaEditar();
+        setModoAtual(ActionMode.NORMAL);
     }
 
     const handleDeletePaleta = (paletaToDelete) => {
@@ -44,6 +47,7 @@ function Home() {
                 <PaletaLista 
                     mode={modoAtual}
                     paletaCriada={paletaParaAdicionar}
+                    paletaEditada={paletaEditada}
                     deletePaleta={handleDeletePaleta}
                     updatePaleta={handleUpdatePaleta} />
                 {
@@ -51,6 +55,7 @@ function Home() {
                     <AdicionaEditaPaletaModal
                         mode={modoAtual}
                         paletaToUpdate={paletaParaEditar}
+                        onUpdatePaleta={(paleta) => setPaletaEditada(paleta)}
                         closeModal={handleCloseModal}
                         onCreatePaleta={(paleta) => setPaletaParaAdicionar(paleta)}
                         />
