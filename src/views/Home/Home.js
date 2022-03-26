@@ -3,7 +3,8 @@ import PaletaLista from "components/PaletaLista/PaletaLista";
 import AdicionaEditaPaletaModal from "components/AdicionaEditaPaletaModal/AdicionaEditaPaletaModal";
 import Navbar from "components/Navbar/Navbar";
 import { ActionMode } from "constants/index";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import DeletaPaletaModal from "components/DeletaPaletaModal/DeletaPaletaModal";
 
 function Home() {
     const [canShowAdicionaPaletaModal, setCanShowAdicionaPaletaModal] = useState(false);
@@ -13,6 +14,7 @@ function Home() {
     const [modoAtual, setModoAtual] = useState(ActionMode.NORMAL);
 
     const [paletaEditada, setPaletaEditada] = useState();
+    const [paletaRemovida, setPaletaRemovida] = useState();
 
     const handleActions = (action) => {
         const novaAcao = modoAtual === action ? ActionMode.NORMAL : action;
@@ -29,7 +31,6 @@ function Home() {
 
     const handleDeletePaleta = (paletaToDelete) => {
         setPaletaParaDeletar(paletaToDelete);
-        setCanShowAdicionaPaletaModal(true);
     }
 
     const handleUpdatePaleta = (paletaToUpdate) => {
@@ -49,6 +50,7 @@ function Home() {
                     mode={modoAtual}
                     paletaCriada={paletaParaAdicionar}
                     paletaEditada={paletaEditada}
+                    paletaRemovida={paletaRemovida}
                     deletePaleta={handleDeletePaleta}
                     updatePaleta={handleUpdatePaleta} />
                 {
@@ -59,6 +61,14 @@ function Home() {
                         onUpdatePaleta={(paleta) => setPaletaEditada(paleta)}
                         closeModal={handleCloseModal}
                         onCreatePaleta={(paleta) => setPaletaParaAdicionar(paleta)}
+                        />
+                }
+                {
+                    paletaParaDeletar &&
+                    <DeletaPaletaModal
+                        paletaParaDeletar={paletaParaDeletar}
+                        closeModal={handleCloseModal}
+                        onDeletePaleta={(paleta) => setPaletaRemovida(paleta)}
                         />
                 }
             </div>

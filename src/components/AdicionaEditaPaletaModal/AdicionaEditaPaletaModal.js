@@ -63,7 +63,16 @@ function AdicionaEditaPaletaModal({ closeModal, onCreatePaleta, mode, paletaToUp
 		}
 
 		actionResponse[mode]();
+
+		const reset = {
+			preco: '',
+			sabor: '',
+			recheio: '',
+			descricao: '',
+			foto: '',
+		}
 		
+		setState(reset);
 		closeModal();
 	}
 

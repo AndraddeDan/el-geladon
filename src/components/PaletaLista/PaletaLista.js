@@ -5,7 +5,7 @@ import { PaletaService } from "services/PaletaService";
 import PaletaDetalhesModal from "components/PaletaDetalhesModal/PaletaDetalhesModal";
 import { ActionMode } from "constants/index";
 
-function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta, paletaEditada }) {
+function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta, paletaEditada, paletaRemovida }) {
 	const [paletas, setPaletas] = useState([]);
 
 	const [paletasSelecionadas, setQuantidade] = useState({});
@@ -53,7 +53,7 @@ function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta, paletaEdi
 
 	useEffect(() => {
 		getLista();
-	}, [paletaEditada]);
+	}, [paletaEditada, paletaRemovida]);
 
 	return (
 		<div className="PaletaLista">
