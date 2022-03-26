@@ -3,7 +3,7 @@ import PaletaLista from "components/PaletaLista/PaletaLista";
 import AdicionaEditaPaletaModal from "components/AdicionaEditaPaletaModal/AdicionaEditaPaletaModal";
 import Navbar from "components/Navbar/Navbar";
 import { ActionMode } from "constants/index";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Home() {
     const [canShowAdicionaPaletaModal, setCanShowAdicionaPaletaModal] = useState(false);
@@ -42,6 +42,7 @@ function Home() {
             <Navbar
                 mode={modoAtual}
                 createPaleta={() => setCanShowAdicionaPaletaModal(true)}
+                deletePaleta={() => handleActions(ActionMode.DELETAR)}
                 updatePaleta={() =>  handleActions(ActionMode.ATUALIZAR)} />
             <div className="Home__container">
                 <PaletaLista 

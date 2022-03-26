@@ -71,7 +71,7 @@ function AdicionaEditaPaletaModal({ closeModal, onCreatePaleta, mode, paletaToUp
     <Modal closeModal={closeModal}> 
 			<div className="AdicionaPaletaModal">
 				<form autoComplete="off">
-					<h2> { ActionMode.NORMAL === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
+					<h2> { ActionMode.ATUALIZAR === mode ? 'Atualizar' : 'Adicionar ao' } Cardápio </h2>
 					<div>
 						<label className="AdicionaPaletaModal__text" htmlFor="preco"> Preco: </label>
 						<input 

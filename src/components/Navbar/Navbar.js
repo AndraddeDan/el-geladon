@@ -2,11 +2,12 @@ import "./Navbar.css";
 import { ActionMode } from "constants/index";
 
 import paleta from "assets/icons/paleta.svg"
-import atualizacao from "assets/icons/atualizacao.svg"
+import atualizar from "assets/icons/atualizar.svg"
+import deletar from "assets/icons/deletar.svg"
 import sacola from "assets/icons/sacola.svg"
 import logo from "assets/logo.svg"
 
-function Navbar({ createPaleta, updatePaleta, mode }) {
+function Navbar({ createPaleta, updatePaleta, mode, deletePaleta }) {
   return (
       <div className="Header">
         <div className="row">
@@ -16,17 +17,23 @@ function Navbar({ createPaleta, updatePaleta, mode }) {
           </div>
           <div className="Header__opcoes Opcoes">
             <button
-              type="button"
-              className={`Opcoes__paleta Paleta ${mode === ActionMode.ATUALIZAR && 'Paleta--ativa'}`}
-              onClick={() => updatePaleta()}>
-              <img src={atualizacao} width="40px" className="Paleta__icone" alt="Editar paleta" />
+                type="button"
+                className={`Opcoes__paleta Paleta ${mode === ActionMode.ATUALIZAR && 'Paleta--ativa'}`}
+                onClick={() => updatePaleta()}>
+                <img src={atualizar} width="40px" className="Paleta__icone" alt="Editar paleta" />
+            </button>
+            <button
+                type="button"
+                className={`Opcoes__paleta Paleta ${mode === ActionMode.DELETAR && 'Paleta--deletar'}`}
+                onClick={() => deletePaleta()}>
+                <img src={deletar} width="40px" className="Paleta__icone" alt="Deletar paleta" />
             </button>
             <button type="button" className="Opcoes__paleta Paleta" onClick={() => createPaleta() }>
-              <img src={paleta} width="40px" className="Paleta__icone" alt="Adiconar paleta" />
+                <img src={paleta} width="40px" className="Paleta__icone" alt="Adiconar paleta" />
             </button>
             <div className="Opcoes__sacola Sacola">
-              <img src={sacola} width="40px" className="Sacola__icone" alt="Sacola de compras" />
-              {/* <span className="Sacola__badge"> 2 </span> */}
+                <img src={sacola} width="40px" className="Sacola__icone" alt="Sacola de compras" />
+                {/* <span className="Sacola__badge"> 2 </span> */}
             </div>
           </div>
         </div>

@@ -16,12 +16,16 @@ function PaletaListaItem({ paleta, quantidadeSelecionada, index, onRemove, onAdd
 		Boolean(canRender) && (<span className="PaletaListaItem__badge"> {quantidadeSelecionada} </span>);
 
 	const badgeAction = (canRender) => {
-		if (canRender) return (<span className="PaletaListaItem__tag"> { mode } </span>);
+		if (canRender) return (<span className={`PaletaListaItem__tag ${mode === ActionMode.DELETAR && 'PaletaListaItem__tag--deletar'}`}> { mode } </span>);
 	}
 
 	return (
 			<div
-				className={`PaletaListaItem ${mode !== ActionMode.NORMAL && 'PaletaListaItem--disable'}`}
+				className={`
+					PaletaListaItem
+					${mode !== ActionMode.NORMAL && 'PaletaListaItem--disable'}
+					${mode === ActionMode.DELETAR && 'PaletaListaItem--deletar'}
+				`}
 				onClick={() => clickItem(paleta.id)}>
 				{badgeCounter(quantidadeSelecionada, index)}
 				{badgeAction(mode !== ActionMode.NORMAL)}

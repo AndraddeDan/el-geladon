@@ -54,7 +54,10 @@
 
 .Paleta--ativa {
   background: rgba(148, 0, 211);
-  border-radius: 10px;
+}
+
+.Paleta--deletar {
+  background: rgba(211, 0, 0);
 }
 
 .Sacola {
