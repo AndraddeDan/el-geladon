@@ -36,13 +36,14 @@ function AdicionaEditaPaletaModal({ closeModal, onCreatePaleta, mode, paletaToUp
 	})
 
 	const handleSend = async () => {
-		const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split('\\').pop();
+		const renomeiaCaminhoFoto = (fotoPath) => fotoPath.split(/\\|\//).pop();
 
 		const { sabor, recheio, descricao, preco, foto } = state;
 
 		const titulo = sabor + (recheio && ' com ' + recheio);
 
 		const paleta = {
+			...(paletaToUpdate && { _id: paletaToUpdate?.id }),
 			sabor: titulo,
 			descricao,
 			preco,
