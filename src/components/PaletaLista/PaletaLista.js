@@ -6,9 +6,11 @@ import PaletaDetalhesModal from "components/PaletaDetalhesModal/PaletaDetalhesMo
 import { ActionMode } from "constants/index";
 
 function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta, paletaEditada, paletaRemovida }) {
+	const selecionadas = JSON.parse(localStorage.getItem('selecionadas')) ?? {};
+
 	const [paletas, setPaletas] = useState([]);
 
-	const [paletasSelecionadas, setQuantidade] = useState({});
+	const [paletasSelecionadas, setQuantidade] = useState(selecionadas);
 
 	const [paletaModal, setPaletaModal] = useState(false);
 
@@ -16,6 +18,19 @@ function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta, paletaEdi
 		const paleta = { [paletaIndex]: (paletasSelecionadas[paletaIndex] || 0) +1 }
 		setQuantidade({ ...paletasSelecionadas, ...paleta});
 	}
+
+	const setSelecionadas = useCallback(() => {
+		if(!paletas.length) return
+
+		const entries = Object.entries(paletasSelecionadas);
+		const sacola = entries.map(arr => ({ 
+			paletaId: paletas[arr[0]].id,
+			quantidade: arr[1]
+		}))
+
+		localStorage.setItem('sacola', JSON.stringify(sacola))
+		localStorage.setItem('selecionadas', JSON.stringify(paletasSelecionadas))
+	}, [ paletasSelecionadas, paletas ])
 
 	const removerItem = (paletaIndex) => {
 		const paleta = { [paletaIndex]: Number(paletasSelecionadas[paletaIndex] || 0) -1 }
@@ -43,6 +58,10 @@ function PaletaLista({ paletaCriada, mode, updatePaleta, deletePaleta, paletaEdi
 		const lista = [...paletas,  paleta]; 
 		setPaletas(lista);
 	}, [ paletas ]);
+
+	useEffect(() => {
+		setSelecionadas();
+	}, [ setSelecionadas, paletasSelecionadas ]);
 
 	useEffect(() => {
 		if (paletaCriada && !paletas.map(({id}) => id).includes(paletaCriada.id)) {
