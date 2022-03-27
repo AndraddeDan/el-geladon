@@ -7,7 +7,7 @@ import deletar from "assets/icons/deletar.svg"
 import sacola from "assets/icons/sacola.svg"
 import logo from "assets/logo.svg"
 
-function Navbar({ createPaleta, updatePaleta, mode, deletePaleta }) {
+function Navbar({ createPaleta, updatePaleta, mode, deletePaleta, openBag }) {
   return (
       <div className="Header">
         <div className="row">
@@ -31,9 +31,8 @@ function Navbar({ createPaleta, updatePaleta, mode, deletePaleta }) {
             <button type="button" className="Opcoes__paleta Paleta" onClick={() => createPaleta() }>
                 <img src={paleta} width="40px" className="Paleta__icone" alt="Adiconar paleta" />
             </button>
-            <div className="Opcoes__sacola Sacola">
+            <div className="Opcoes__sacola Sacola" onClick={openBag}>
                 <img src={sacola} width="40px" className="Sacola__icone" alt="Sacola de compras" />
-                {/* <span className="Sacola__badge"> 2 </span> */}
             </div>
           </div>
         </div>
